@@ -1,1 +1,209 @@
+-- Check if the game is correct
+if game.PlaceId == 100902716985467 then
+    -- Current version and settings
+    local CurrentVersion = "🌟 UNIVERS Hub 🌌 | Bee Master Simulator 🐝"
 
+    -- Load Rayfield Library
+    local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+    -- Create Main Window
+    local Window = Rayfield:CreateWindow({
+        Name = CurrentVersion,
+        LoadingTitle = "🌌 Loading Univers Hub... 🌌",
+        LoadingSubtitle = "By 🌟 Univers Team 🌌",
+        ConfigurationSaving = {
+            Enabled = true,
+            FolderName = "UniversHubConfigs",
+            FileName = "BeeMasterSimulator"
+        },
+        Discord = {
+            Enabled = true,
+            Invite = "PwbtqEDT", -- Add your community invite link here
+            RememberJoins = true
+        }
+    })
+
+    -- ========================= TABS ========================= --
+    -- Home Tab
+    local homeTab = Window:CreateTab("🏠 Home", nil)
+    homeTab:CreateSection("Welcome to Univers Hub!")
+    homeTab:CreateParagraph({
+        Title = "🌟 About",
+        Content = "Univers Hub is designed to enhance your Bee Master Simulator experience with powerful and easy-to-use features."
+    })
+
+    -- Main Tab
+    local mainTab = Window:CreateTab("🌟 Main", nil)
+    mainTab:CreateSection("Farm Features")
+
+    -- ========================= FARM SECTION ========================= --
+    local Eggs = {
+        ["Spawn Hive Egg"] = "631f4d8de6bb46b7b8ec92a9738fd4b02"
+    }
+    local selectedEggValue = nil
+    local isAutoHatching = false
+
+    mainTab:CreateDropdown({
+        Name = "Select Egg",
+        Options = {"Spawn Hive Egg"},
+        CurrentOption = nil,
+        MultipleOptions = false,
+        Flag = "Dropdown1",
+        Callback = function(option)
+            selectedEggValue = Eggs[option]
+            Rayfield:Notify({
+                Title = "Egg Selected",
+                Content = "You selected: " .. option,
+                Duration = 3
+            })
+        end
+    })
+
+    mainTab:CreateToggle({
+        Name = "Auto Hatch",
+        CurrentValue = false,
+        Flag = "Toggle1",
+        Callback = function(value)
+            isAutoHatching = value
+            Rayfield:Notify({
+                Title = "Auto Hatch",
+                Content = isAutoHatching and "Auto Hatch Enabled" or "Auto Hatch Disabled",
+                Duration = 3
+            })
+
+            while isAutoHatching do
+                if selectedEggValue then
+                    local args = {
+                        [1] = selectedEggValue,
+                        [2] = "open1",
+                        [3] = {}
+                    }
+                    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Hatch"):WaitForChild("EggHatch"):InvokeServer(unpack(args))
+                end
+                task.wait(0.5) -- Prevent infinite loop crashes
+            end
+        end
+    })
+
+    -- ========================= MACHINES SECTION ========================= --
+    mainTab:CreateSection("Machines")
+    mainTab:CreateButton({
+        Name = "Open Golden Machine",
+        Callback = function()
+            game:GetService("Players").LocalPlayer.PlayerGui.Shiny.Enabled = true
+        end
+    })
+    mainTab:CreateButton({
+        Name = "Open Rainbow Machine",
+        Callback = function()
+            game:GetService("Players").LocalPlayer.PlayerGui.Rainbow.Enabled = true
+        end
+    })
+    mainTab:CreateButton({
+        Name = "Open Combine Machine",
+        Callback = function()
+            game:GetService("Players").LocalPlayer.PlayerGui.Combine.Enabled = true
+        end
+    })
+
+    -- ========================= OTHER FEATURES SECTION ========================= --
+    mainTab:CreateSection("Other Features")
+    mainTab:CreateButton({
+        Name = "Open Upgrades",
+        Callback = function()
+            game:GetService("Players").LocalPlayer.PlayerGui.Upgrades.Enabled = true
+        end
+    })
+    mainTab:CreateButton({
+        Name = "Open Staff Shop",
+        Callback = function()
+            game:GetService("Players").LocalPlayer.PlayerGui.StaffShop.Enabled = true
+        end
+    })
+    mainTab:CreateButton({
+        Name = "Open Index",
+        Callback = function()
+            game:GetService("Players").LocalPlayer.PlayerGui.Index.Enabled = true
+        end
+    })
+
+    -- ========================= MISCELLANEOUS SECTION ========================= --
+    local miscTab = Window:CreateTab("🖇️ Miscellaneous", nil)
+    miscTab:CreateSection("Player Tweaks")
+
+    miscTab:CreateSlider({
+        Name = "Speed Power",
+        Range = {16, 100},
+        Increment = 1,
+        Suffix = "Speed",
+        CurrentValue = 16,
+        Flag = "SpeedSlider",
+        Callback = function(value)
+            local player = game.Players.LocalPlayer
+            if player and player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+                player.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = value
+            end
+        end,
+    })
+
+    miscTab:CreateSlider({
+        Name = "Jump Power",
+        Range = {50, 300},
+        Increment = 10,
+        Suffix = "Power",
+        CurrentValue = 100,
+        Flag = "JumpSlider",
+        Callback = function(value)
+            local player = game.Players.LocalPlayer
+            if player and player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+                player.Character:FindFirstChildOfClass("Humanoid").JumpPower = value
+            end
+        end,
+    })
+
+    -- ========================= COMMUNITY TAB ========================= --
+    local communityTab = Window:CreateTab("🎉 Community", nil)
+    communityTab:CreateSection("Join Us")
+    communityTab:CreateParagraph({
+        Title = "Join the Univers Hub Community!",
+        Content = "Click the button below to copy our Discord link to your clipboard."
+    })
+    communityTab:CreateButton({
+        Name = "Copy Discord Link",
+        Callback = function()
+            setclipboard("https://discord.gg/PwbtqEDT")
+            Rayfield:Notify({
+                Title = "Link Copied!",
+                Content = "Discord link has been copied to your clipboard.",
+                Duration = 3
+            })
+        end
+    })
+
+    -- ========================= STATUS TAB ========================= --
+    local statusTab = Window:CreateTab("🚦 Status", nil)
+    statusTab:CreateSection("Player Status")
+    statusTab:CreateParagraph({
+        Title = "Status",
+        Content = "Coming soon: See your current stats and more here!"
+    })
+
+    -- ========================= NOTIFICATIONS ========================= --
+    Rayfield:Notify({
+        Title = "Script Loaded",
+        Content = "Welcome to 🌌 Univers Hub 🌌 for Bee Master Simulator! 🐝",
+        Duration = 5,
+        Image = 13047715178,
+        Actions = {
+            Ignore = {
+                Name = "Okay!",
+                Callback = function()
+                    print("User acknowledged notification.")
+                end
+            }
+        }
+    })
+
+else
+    warn("This script is not compatible with the current game.")
+end
