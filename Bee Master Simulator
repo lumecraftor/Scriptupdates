@@ -43,6 +43,7 @@ if game.PlaceId == 100902716985467 then
     local selectedEggValue = nil
     local isAutoHatching = false
 
+    -- Dropdown for Egg Selection
     mainTab:CreateDropdown({
         Name = "Select Egg",
         Options = {"Spawn Hive Egg"},
@@ -59,6 +60,7 @@ if game.PlaceId == 100902716985467 then
         end
     })
 
+    -- Auto Hatch Toggle
     mainTab:CreateToggle({
         Name = "Auto Hatch",
         CurrentValue = false,
