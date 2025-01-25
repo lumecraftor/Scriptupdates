@@ -1,11 +1,44 @@
+local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+function zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW(data) m=string.sub(data, 0, 55) data=data:gsub(m,'')
+
+data = string.gsub(data, '[^'..b..'=]', '') return (data:gsub('.', function(x) if (x == '=') then return '' end local r,f='',(b:find(x)-1) for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and '1' or '0') end return r; end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x) if (#x ~= 8) then return '' end local c=0 for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end return string.char(c) end)) end
+
+
+ 
+
+
+local b=zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('OEyqulDdwTOQFdGHtqpqIHPzhbiYOUYLxFYTvKhmgAvDHJxJYSoonEpQUJDREVGR0hJSktMTU5PUFFSU1RVVldYWVphYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ejAxMjM0NTY3ODkrLw==')
+function xDVKRwDfDYiiCsIHYtmuZoHnrbIKllEfRCrHARDvJLglLld(data) m=string.sub(data, 0, 55) data=data:gsub(m,zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('IxdBRVnkjIqSRZDtWxvuLvlOizuPDXPdSAQHqEWvXZTiEruoyyoxMFq'))
+
+data = string.gsub(data, zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('egOTQIBbLeCrbYtuHEIFiQkwJjhGgGHPoOjWfNMCPVgGbKnIXbqxXweW14=')..b..zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('mSbKyMIBpRAuALCPISgJukKvWPpfbMSaPzMkkkpHsjDhnZmlatrceuDPV0='), zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('wGWrvJdqIOIVZURnVFlhgrXmbNCXrXwSAOrijAdOxfKIkQDFWFlcTMb')) return (data:gsub(zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('WHgyCpfaVPckVGebSrHHayxwVtGBrOjjcvWtHmivaVOERLtHbklfBdKLg=='), function(x) if (x == zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('wsNzLPPVpTjaQzMzhPgBOaEMsXDLtbPFIxsKmfitRbkFiujjWJfMqSePQ==')) then return zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('VzvAZPzCgqtgMvsEAPYxPfxylwSmoRkskeOBqCTPSyEwdjqxGMeXeeo') end local r,f=zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('ooJcAVrUdsqUYFITKOGIvzuUaiSOFlsmAAXRAJjFGDcofvKaFHGaDvi'),(b:find(x)-1) for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('xmDMNptGTsGfZWxvDNZrFYnloBbPsRegjBboTQCrDaUEQtJezVMzBqbMQ==') or zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('odmhXQwrDfDXPVvwFJHWjGBOnCfhHhyPWSyieEbmgKXdfsfyDOWFGGBMA==')) end return r; end):gsub(zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('ucEVsNfyfQCofTmJlnvTmMrdcMbGTctHSjaJwdxKYjSiMXVxKlJxaXwJWQlZCVkPyVkPyVkPyVkPyVkPyVkPw=='), function(x) if (#x ~= 8) then return zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('JNccbyISPpiaiOcPLjoufvRQtoGehlHEMpClnxiOvOXTKOkxUlSikgM') end local c=0 for i=1,8 do c=c+(x:sub(i,i)==zLpGgZMAiuDPPCFeGXVoGNbPNelbNbGqpENPqibNsHYrRrftbakMW('veKBFwtgwAAAKJwSDvqZfmRsvbKdhkHrfOCgGuDigtZrJcYdxnzvBCHMQ==') and 2^(8-i) or 0) end return string.char(c) end)) end
+
+
+ 
+
+
+function eGVOtejgeWrsLQTNhTpQs(c)
+tab={}
+for i = 1,#c do
+x=string.len(c[i]) 
+y=string.char(x)
+table.insert(tab,y)
+end
+x=table.concat(tab)
+return x
+end 
+
+
+function jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP(code)res=eGVOtejgeWrsLQTNhTpQs({})for i in ipairs(code)do res=res..string.char(code[i]/200)end return res end 
+
+
 -- Encoded URL and Game ID
 local gameScripts = {
-    [100902716985467] = "https://raw.githubusercontent.com/lumecraftor/Scriptupdates/refs/heads/main/Bee%20Master%20Simulator=" -- Encoded URL
+    [100902716985467] = jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({20800,23200,23200,22400,23000,11600,9400,9400,22800,19400,23800,9200,20600,21000,23200,20800,23400,19600,23400,23000,20200,22800,19800,22200,22000,23200,20200,22000,23200,9200,19800,22200,21800,9400,21600,23400,21800,20200,19800,22800,19400,20400,23200,22200,22800,9400,16600,19800,22800,21000,22400,23200,23400,22400,20000,19400,23200,20200,23000,9400,22800,20200,20400,23000,9400,20800,20200,19400,20000,23000,9400,21800,19400,21000,22000,9400,13200,20200,20200,7400,10000,9600,15400,19400,23000,23200,20200,22800,7400,10000,9600,16600,21000,21800,23400,21600,19400,23200,22200,22800,12200}) -- Encoded URL
 }
 
 -- Base64 Decoder
 local function decodeURL(encoded)
-    return game:GetService("HttpService"):JSONDecode('["' .. encoded .. '"]')[1]
+    return game:GetService(jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({14400,23200,23200,22400,16600,20200,22800,23600,21000,19800,20200})):JSONDecode(jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({18200})jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({6400,9200,9200,6400,20200,22000,19800,22200,20000,20200,20000,6400,9200,9200,6400})jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({18600}))[1]
 end
 
 -- Check if the game matches
@@ -13,26 +46,26 @@ local gameId = game.PlaceId
 local scriptURL = gameScripts[gameId] and decodeURL(gameScripts[gameId])
 
 if scriptURL then
-    game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "Univers Hub Notification",
-        Text = "Game found! The script is loading.",
+    game:GetService(jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({16600,23200,19400,22800,23200,20200,22800,14200,23400,21000})):SetCore(jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({16600,20200,22000,20000,15600,22200,23200,21000,20400,21000,19800,19400,23200,21000,22200,22000}), {
+        Title = jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({17000,22000,21000,23600,20200,22800,23000,6400,14400,23400,19600,6400,15600,22200,23200,21000,20400,21000,19800,19400,23200,21000,22200,22000}),
+        Text = jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({14200,19400,21800,20200,6400,20400,22200,23400,22000,20000,6600,6400,16800,20800,20200,6400,23000,19800,22800,21000,22400,23200,6400,21000,23000,6400,21600,22200,19400,20000,21000,22000,20600,9200}),
         Duration = 5
     })
     local success, errorMsg = pcall(function()
         loadstring(game:HttpGet(scriptURL))()
     end)
     if not success then
-        game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "Error",
-            Text = "Failed to load the script.",
+        game:GetService(jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({16600,23200,19400,22800,23200,20200,22800,14200,23400,21000})):SetCore(jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({16600,20200,22000,20000,15600,22200,23200,21000,20400,21000,19800,19400,23200,21000,22200,22000}), {
+            Title = jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({13800,22800,22800,22200,22800}),
+            Text = jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({14000,19400,21000,21600,20200,20000,6400,23200,22200,6400,21600,22200,19400,20000,6400,23200,20800,20200,6400,23000,19800,22800,21000,22400,23200,9200}),
             Duration = 5
         })
-        warn("Script Error: " .. errorMsg)
+        warn(jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({16600,19800,22800,21000,22400,23200,6400,13800,22800,22800,22200,22800,11600,6400}) .. errorMsg)
     end
 else
-    game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "Error",
-        Text = "Game script not found in the list.",
+    game:GetService(jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({16600,23200,19400,22800,23200,20200,22800,14200,23400,21000})):SetCore(jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({16600,20200,22000,20000,15600,22200,23200,21000,20400,21000,19800,19400,23200,21000,22200,22000}), {
+        Title = jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({13800,22800,22800,22200,22800}),
+        Text = jwWKWLGSNUUeYSGpuCNsmuWHSgfbizECvkwNXrKcYsUMeaumDVdVWgmZpWchAZCrwQYnefsAtHXOHiExrnJKHbkfHcP({14200,19400,21800,20200,6400,23000,19800,22800,21000,22400,23200,6400,22000,22200,23200,6400,20400,22200,23400,22000,20000,6400,21000,22000,6400,23200,20800,20200,6400,21600,21000,23000,23200,9200}),
         Duration = 5
     })
-end
+end                 
