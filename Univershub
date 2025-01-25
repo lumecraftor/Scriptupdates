@@ -1,6 +1,6 @@
 -- Encoded URL and Game ID
 local gameScripts = {
-    [100902716985467] = "aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2x1bWVjcmFmdG9yL1NjcmlwdC9yZWZzL2hlYWRzL21haW4vQmVlbWFzdGVyc2ltdWxhdG9yLmx1YT90b2tlbj1HSENBVDBBQUFBQUFENTNYWU9WVVZCWUhWRlZYQzRURUJCWVpNVVNTUVM=" -- Encoded URL
+    [100902716985467] = "https://raw.githubusercontent.com/lumecraftor/Scriptupdates/refs/heads/main/Bee%20Master%20Simulator" -- Encoded URL
 }
 
 -- Base64 Decoder
