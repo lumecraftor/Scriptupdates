@@ -1,9 +1,6 @@
--- Check if the game is correct
+-- Ensure the script only runs in Bee Master Simulator
 if game.PlaceId == 100902716985467 then
-    -- Current version and settings
     local CurrentVersion = "🌟 UNIVERS Hub 🌌 | Bee Master Simulator 🐝"
-
-    -- Load Rayfield Library
     local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
     -- Create Main Window
@@ -16,196 +13,198 @@ if game.PlaceId == 100902716985467 then
             FolderName = "UniversHubConfigs",
             FileName = "BeeMasterSimulator"
         },
-        Discord = {
-            Enabled = true,
-            Invite = "PwbtqEDT", -- Add your community invite link here
-            RememberJoins = true
-        }
+        Discord = { Enabled = true, Invite = "PwbtqEDT", RememberJoins = true }
     })
 
-    -- ========================= TABS ========================= --
-    -- Home Tab
+    -- ===================== TABS ===================== --
     local homeTab = Window:CreateTab("🏠 Home", nil)
     homeTab:CreateSection("Welcome to Univers Hub!")
     homeTab:CreateParagraph({
         Title = "🌟 About",
-        Content = "Univers Hub is designed to enhance your Bee Master Simulator experience with powerful and easy-to-use features."
+        Content = "Univers Hub enhances your Bee Master Simulator experience with powerful and easy-to-use features."
     })
 
-    -- Main Tab
     local mainTab = Window:CreateTab("🌟 Main", nil)
+    local miscTab = Window:CreateTab("🖇️ Miscellaneous", nil)
+    local communityTab = Window:CreateTab("🎉 Community", nil)
+    local statusTab = Window:CreateTab("🚦 Status", nil)
+
+    -- ===================== MAIN TAB ===================== --
     mainTab:CreateSection("Farm Features")
+    local Eggs = { ["Spawn Hive Egg"] = "631f4d8de6bb46b7b8ec92a9738fd4b02" }
+    local selectedEggValue, isAutoHatching = nil, false
 
-    -- ========================= FARM SECTION ========================= --
-    local Eggs = {
-        ["Spawn Hive Egg"] = "631f4d8de6bb46b7b8ec92a9738fd4b02"
-    }
-    local selectedEggValue = nil
-    local isAutoHatching = false
-
-    -- Dropdown for Egg Selection
+    -- Egg Selection Dropdown
     mainTab:CreateDropdown({
         Name = "Select Egg",
         Options = {"Spawn Hive Egg"},
-        CurrentOption = nil,
-        MultipleOptions = false,
-        Flag = "Dropdown1",
+        Flag = "EggDropdown",
         Callback = function(option)
             selectedEggValue = Eggs[option]
-            Rayfield:Notify({
-                Title = "Egg Selected",
-                Content = "You selected: " .. option,
-                Duration = 3
-            })
+            Rayfield:Notify({ Title = "Egg Selected", Content = "You selected: " .. option, Duration = 3 })
         end
     })
 
     -- Auto Hatch Toggle
     mainTab:CreateToggle({
         Name = "Auto Hatch",
-        CurrentValue = false,
-        Flag = "Toggle1",
+        Flag = "AutoHatchToggle",
         Callback = function(value)
             isAutoHatching = value
-            Rayfield:Notify({
-                Title = "Auto Hatch",
-                Content = isAutoHatching and "Auto Hatch Enabled" or "Auto Hatch Disabled",
-                Duration = 3
-            })
+            Rayfield:Notify({ Title = "Auto Hatch", Content = isAutoHatching and "Enabled" or "Disabled", Duration = 3 })
 
             while isAutoHatching do
                 if selectedEggValue then
-                    local args = {
-                        [1] = selectedEggValue,
-                        [2] = "open1",
-                        [3] = {}
-                    }
+                    local args = { selectedEggValue, "open1", {} }
                     game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Hatch"):WaitForChild("EggHatch"):InvokeServer(unpack(args))
                 end
-                task.wait(0.5) -- Prevent infinite loop crashes
+                task.wait(0.5)
             end
         end
     })
 
-    -- ========================= MACHINES SECTION ========================= --
+    -- ===================== MACHINE SECTION ===================== --
     mainTab:CreateSection("Machines")
-    mainTab:CreateButton({
-        Name = "Open Golden Machine",
-        Callback = function()
-            game:GetService("Players").LocalPlayer.PlayerGui.Shiny.Enabled = true
-        end
-    })
-    mainTab:CreateButton({
-        Name = "Open Rainbow Machine",
-        Callback = function()
-            game:GetService("Players").LocalPlayer.PlayerGui.Rainbow.Enabled = true
-        end
-    })
-    mainTab:CreateButton({
-        Name = "Open Combine Machine",
-        Callback = function()
-            game:GetService("Players").LocalPlayer.PlayerGui.Combine.Enabled = true
-        end
-    })
+    local machines = {
+        { "Open Golden Machine", "Shiny" },
+        { "Open Rainbow Machine", "Rainbow" },
+        { "Open Combine Machine", "Combine" }
+    }
 
-    -- ========================= OTHER FEATURES SECTION ========================= --
+    for _, machine in ipairs(machines) do
+        mainTab:CreateButton({
+            Name = machine[1],
+            Callback = function()
+                game:GetService("Players").LocalPlayer.PlayerGui[machine[2]].Enabled = true
+                Rayfield:Notify({
+                    Title = machine[1],
+                    Content = machine[1] .. " is now opening with a smooth animation.",
+                    Duration = 3
+                })
+            end
+        })
+    end
+
+    -- ===================== OTHER FEATURES ===================== --
     mainTab:CreateSection("Other Features")
-    mainTab:CreateButton({
-        Name = "Open Upgrades",
-        Callback = function()
-            game:GetService("Players").LocalPlayer.PlayerGui.Upgrades.Enabled = true
-        end
-    })
-    mainTab:CreateButton({
-        Name = "Open Staff Shop",
-        Callback = function()
-            game:GetService("Players").LocalPlayer.PlayerGui.StaffShop.Enabled = true
-        end
-    })
-    mainTab:CreateButton({
-        Name = "Open Index",
-        Callback = function()
-            game:GetService("Players").LocalPlayer.PlayerGui.Index.Enabled = true
-        end
-    })
+    local features = {
+        { "Open Upgrades", "Upgrades" },
+        { "Open Staff Shop", "StaffShop" },
+        { "Open Index", "Index" }
+    }
 
-    -- ========================= MISCELLANEOUS SECTION ========================= --
-    local miscTab = Window:CreateTab("🖇️ Miscellaneous", nil)
+    for _, feature in ipairs(features) do
+        mainTab:CreateButton({
+            Name = feature[1],
+            Callback = function()
+                game:GetService("Players").LocalPlayer.PlayerGui[feature[2]].Enabled = true
+                Rayfield:Notify({
+                    Title = feature[1],
+                    Content = "Opening " .. feature[1] .. " with smooth animation.",
+                    Duration = 3
+                })
+            end
+        })
+    end
+
+    -- ===================== MISCELLANEOUS SECTION ===================== --
     miscTab:CreateSection("Player Tweaks")
+    -- Speed and Jump Sliders
+    local tweaks = {
+        { "Speed Power", 16, 100, 1, "Speed", "SpeedSlider", function(value) updatePlayerStat("WalkSpeed", value) end },
+        { "Jump Power", 50, 300, 10, "Power", "JumpSlider", function(value) updatePlayerStat("JumpPower", value) end }
+    }
 
-    miscTab:CreateSlider({
-        Name = "Speed Power",
-        Range = {16, 100},
-        Increment = 1,
-        Suffix = "Speed",
-        CurrentValue = 16,
-        Flag = "SpeedSlider",
-        Callback = function(value)
-            local player = game.Players.LocalPlayer
-            if player and player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
-                player.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = value
-            end
-        end,
+    for _, tweak in ipairs(tweaks) do
+        miscTab:CreateSlider({
+            Name = tweak[1],
+            Range = { tweak[2], tweak[3] },
+            Increment = tweak[4],
+            Suffix = tweak[5],
+            CurrentValue = tweak[2],
+            Flag = tweak[6],
+            Callback = tweak[7]
+        })
+    end
+
+    -- Anti Staff Section with Group Admin and Owner Detection
+    local antiStaffSection = miscTab:CreateSection("Anti Staff")
+    local staffRoles = {
+        "Owner 🛠", "Co-Owner ✓", "Map Designer 🌎", "Investor 🤝", "Beta Tester", "Community Manager", 
+        "Partner 🔥", "Head Admin ✔️", "Co-Owner Developer ✔️", "Head Developer 🫡"
+    }
+    local groupId, staffGroupId = 16121824, 7
+
+    miscTab:CreateDropdown({
+        Name = "Staff Warning/Leave",
+        Options = {"Warning", "Leave"},
+        CurrentOption = "Warning",
+        Flag = "StaffWarningDropdown",
+        Callback = function(option)
+            game.Players.PlayerAdded:Connect(function(player)
+                if player:GetRankInGroup(groupId) > 0 then
+                    local playerRole = player:GetRoleInGroup(staffGroupId)
+                    if table.find(staffRoles, playerRole) then
+                        if option == "Leave" then
+                            game.Players.LocalPlayer:Kick("Staff member detected, leaving the server. 🏃‍♂️")
+                        else
+                            Rayfield:Notify({ Title = "Staff Member Joined!", Content = "Staff detected: " .. player.Name, Duration = 5 })
+                        end
+                    end
+                end
+            end)
+        end
     })
 
-    miscTab:CreateSlider({
-        Name = "Jump Power",
-        Range = {50, 300},
-        Increment = 10,
-        Suffix = "Power",
-        CurrentValue = 100,
-        Flag = "JumpSlider",
-        Callback = function(value)
-            local player = game.Players.LocalPlayer
-            if player and player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
-                player.Character:FindFirstChildOfClass("Humanoid").JumpPower = value
-            end
-        end,
-    })
-
-    -- ========================= COMMUNITY TAB ========================= --
-    local communityTab = Window:CreateTab("🎉 Community", nil)
+    -- ===================== COMMUNITY TAB ===================== --
     communityTab:CreateSection("Join Us")
     communityTab:CreateParagraph({
         Title = "Join the Univers Hub Community!",
-        Content = "Click the button below to copy our Discord link to your clipboard."
+        Content = "Click below to copy our Discord link to your clipboard."
     })
     communityTab:CreateButton({
         Name = "Copy Discord Link",
         Callback = function()
             setclipboard("https://discord.gg/PwbtqEDT")
-            Rayfield:Notify({
-                Title = "Link Copied!",
-                Content = "Discord link has been copied to your clipboard.",
-                Duration = 3
-            })
+            Rayfield:Notify({ Title = "Link Copied!", Content = "Discord link copied to clipboard.", Duration = 3 })
         end
     })
 
-    -- ========================= STATUS TAB ========================= --
-    local statusTab = Window:CreateTab("🚦 Status", nil)
+    -- ===================== STATUS TAB ===================== --
     statusTab:CreateSection("Player Status")
-    statusTab:CreateParagraph({
-        Title = "Status",
-        Content = "Coming soon: See your current stats and more here!"
-    })
+    local fpsLabel = statusTab:CreateLabel("FPS: Loading...")
+    local playersLabel = statusTab:CreateLabel("Players: Loading...")
 
-    -- ========================= NOTIFICATIONS ========================= --
+    -- Function to update FPS and player count dynamically
+    local function updateStatus()
+        local fps = math.floor(1 / game:GetService("RunService").RenderStepped:Wait())
+        fpsLabel:SetText("FPS: " .. fps)
+
+        local players = #game.Players:GetPlayers()
+        playersLabel:SetText("Players: " .. players)
+
+        wait(0.1)
+    end
+
+    spawn(updateStatus)
+
+    -- ===================== NOTIFICATIONS ===================== --
     Rayfield:Notify({
         Title = "Script Loaded",
         Content = "Welcome to 🌌 Univers Hub 🌌 for Bee Master Simulator! 🐝",
         Duration = 5,
         Image = 13047715178,
-        Actions = {
-            Ignore = {
-                Name = "Okay!",
-                Callback = function()
-                    print("User acknowledged notification.")
-                end
-            }
-        }
+        Actions = { Ignore = { Name = "Okay!", Callback = function() print("User acknowledged notification.") end } }
     })
 
 else
     warn("This script is not compatible with the current game.")
+end
+
+-- Helper Function to Update Player Stats
+function updatePlayerStat(stat, value)
+    local player = game.Players.LocalPlayer
+    if player and player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+        player.Character:FindFirstChildOfClass("Humanoid")[stat] = value
+    end
 end
