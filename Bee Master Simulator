@@ -27,7 +27,6 @@ if game.PlaceId == 100902716985467 then
     local mainTab = Window:CreateTab("🌟 Main", nil)
     local miscTab = Window:CreateTab("🖇️ Miscellaneous", nil)
     local communityTab = Window:CreateTab("🎉 Community", nil)
-    local statusTab = Window:CreateTab("🚦 Status", nil)
 
     -- ===================== MAIN TAB ===================== --
     mainTab:CreateSection("Farm Features")
@@ -169,24 +168,6 @@ if game.PlaceId == 100902716985467 then
             Rayfield:Notify({ Title = "Link Copied!", Content = "Discord link copied to clipboard.", Duration = 3 })
         end
     })
-
-    -- ===================== STATUS TAB ===================== --
-    statusTab:CreateSection("Player Status")
-    local fpsLabel = statusTab:CreateLabel("FPS: Loading...")
-    local playersLabel = statusTab:CreateLabel("Players: Loading...")
-
-    -- Function to update FPS and player count dynamically
-    local function updateStatus()
-        local fps = math.floor(1 / game:GetService("RunService").RenderStepped:Wait())
-        fpsLabel:SetText("FPS: " .. fps)
-
-        local players = #game.Players:GetPlayers()
-        playersLabel:SetText("Players: " .. players)
-
-        wait(0.1)
-    end
-
-    spawn(updateStatus)
 
     -- ===================== NOTIFICATIONS ===================== --
     Rayfield:Notify({
