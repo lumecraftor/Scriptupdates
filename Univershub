@@ -1,6 +1,6 @@
 -- Game list with Game IDs (PlaceIds) and corresponding script URLs
 local gameScripts = {
-    [100902716985467] = "https://raw.githubusercontent.com/lumecraftor1/Scripts/refs/heads/main/Bee%20master%20simulator", -- Bee Master Simulator
+    [100902716985467] = "https://raw.githubusercontent.com/lumecraftor/Scriptupdates/refs/heads/main/Bee%20Master%20Simulator", -- Bee Master Simulator
 }
 
 -- Check if the current game is in the list
