@@ -1,1 +1,40 @@
-local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v11,v12) local v13={};for v14=1, #v11 do v6(v13,v0(v4(v1(v2(v11,v14,v14 + 1 )),v1(v2(v12,1 + (v14% #v12) ,1 + (v14% #v12) + 1 )))%256 ));end return v5(v13);end local v8={[100902716985467]="https://raw.githubusercontent.com/lumecraftor/Scriptupdates/refs/heads/main/Bee%20Master%20Simulator"};local v9=game.PlaceId;local v10=v8[v9];if v10 then game:GetService("StarterGui"):SetCore("SendNotification",{Title="Univers Hub Notification",[v7("\229\198\195\49","\126\177\163\187\69\134\219\167")]="Game found! The script is loading.",[v7("\7\216\56\196\232\42\194\36","\156\67\173\74\165")]=5});local v15,v16=pcall(function() local v17=game:HttpGet(v10);loadstring(v17)();end);if  not v15 then game:GetService(v7("\7\163\72\4\168\35\84\19\162\64","\38\84\215\41\118\220\70")):SetCore(v7("\99\19\44\22\208\95\2\43\20\247\83\23\54\27\241\94","\158\48\118\66\114"),{[v7("\159\45\4\58\118","\155\203\68\112\86\19\197")]=v7("\99\207\36\243\82","\152\38\189\86\156\32\24\133"),Text=v7("\218\86\174\74\249\83\231\82\243\23\171\73\253\83\231\82\244\82\231\85\255\69\174\86\232\25\231\99\238\69\168\84\166\23","\38\156\55\199")   .. tostring(v16) ,Duration=5});warn("Error loading script: "   .. tostring(v16) );end else game:GetService(v7("\155\105\125\58\7\113\232\100\189\116","\35\200\29\28\72\115\20\154")):SetCore(v7("\42\186\223\219\163\35\32\16\185\216\220\140\56\61\22\177","\84\121\223\177\191\237\76"),{[v7("\143\95\221\172\63","\161\219\54\169\192\90\48\80")]="Error",[v7("\125\71\24\49","\69\41\34\96")]=v7("\155\194\218\15\66\56\191\209\222\26\22\107\178\204\195\74\4\36\169\205\211\74\11\37\252\215\223\15\66\39\181\208\195\68","\75\220\163\183\106\98"),[v7("\38\175\153\54\205\11\181\133","\185\98\218\235\87")]=5});end
+-- Game list with Game IDs (PlaceIds) and corresponding script URLs
+local gameScripts = {
+    [116432016116625] = "", -- 
+}
+
+-- Check if the current game is in the list
+local gameId = game.PlaceId
+local scriptURL = gameScripts[gameId]
+
+if scriptURL then
+    -- Notify the player
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Univers Hub Notification",
+        Text = "Game found! The script is loading.",
+        Duration = 5
+    })
+    
+    -- Load and execute the script
+    local success, result = pcall(function()
+        local response = game:HttpGet(scriptURL)
+        loadstring(response)()
+    end)
+    
+    if not success then
+        -- If there was an error loading the script
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "Error",
+            Text = "Failed to load the script. Error: " .. tostring(result),
+            Duration = 5
+        })
+        warn("Error loading script: " .. tostring(result))
+    end
+else
+    -- If the game is not found in the list
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Error",
+        Text = "Game script not found in the list.",
+        Duration = 5
+    })
+end
