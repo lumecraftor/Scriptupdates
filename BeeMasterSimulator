@@ -1,0 +1,143 @@
+- Ensure the script runs only in Bee Master Simulator
+if game.PlaceId ~= 93814145359936 then
+    return warn("This script is only compatible with Bee Master Simulator!")
+end
+
+local Core = loadstring(game:HttpGet("https://yourdomain.com/core.lua"))()
+local CurrentVersion = "🌟 UNIVERS Hub 🌌 | Bee Master Simulator 🐝"
+
+-- Call the Library
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/UI-Interface/CustomFIeld/main/RayField.lua'))()
+
+-- Create Rayfield Window
+local Window, Rayfield = Core:CreateWindow({
+    Name = CurrentVersion,
+    LoadingTitle = "🌌 Loading Univers Hub... 🌌",
+    LoadingSubtitle = "By 🌟 Univers Team 🌌",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = "UniversHubConfigs",
+        FileName = "BeeMasterSimulator"
+    },
+    Discord = { Enabled = true, Invite = "PwbtqEDT", RememberJoins = true }
+})
+
+-- Tabs
+local homeTab = Window:CreateTab("🏠 Home", nil)
+local mainTab = Window:CreateTab("🌟 Main", nil)
+local miscTab = Window:CreateTab("🖇️ Miscellaneous", nil)
+local communityTab = Window:CreateTab("🎉 Community", nil)
+
+-- Home Tab
+homeTab:CreateSection("Welcome to Univers Hub!")
+homeTab:CreateParagraph({
+    Title = "🌟 About",
+    Content = "Univers Hub enhances your Bee Master Simulator experience with powerful and easy-to-use features."
+})
+
+-- Main Tab: Farming Features
+mainTab:CreateSection("Farm Features")
+local selectedEggValue, isAutoHatching = nil, false
+local Eggs = { ["Spawn Hive Egg"] = "631f4d8de6bb46b7b8ec92a9738fd4b02" }
+
+mainTab:CreateDropdown({
+    Name = "Select Egg",
+    Options = { "Spawn Hive Egg" },
+    Flag = "EggDropdown",
+    Callback = function(option)
+        selectedEggValue = Eggs[option]
+        Core:Notify(Rayfield, "Egg Selected", "You selected: " .. option)
+    end
+})
+
+mainTab:CreateToggle({
+    Name = "Auto Hatch",
+    Flag = "AutoHatchToggle",
+    Callback = function(value)
+        isAutoHatching = value
+        Core:Notify(Rayfield, "Auto Hatch", isAutoHatching and "Enabled" or "Disabled")
+
+        while isAutoHatching do
+            if selectedEggValue then
+                local args = { selectedEggValue, "open1", {} }
+                game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Hatch"):WaitForChild("EggHatch"):InvokeServer(unpack(args))
+            end
+            task.wait(0.5)
+        end
+    end
+})
+
+-- Main Tab: Machines
+mainTab:CreateSection("Machines")
+local machines = {
+    { "Open Golden Machine", "Shiny" },
+    { "Open Rainbow Machine", "Rainbow" },
+    { "Open Combine Machine", "Combine" }
+}
+
+for _, machine in ipairs(machines) do
+    mainTab:CreateButton({
+        Name = machine[1],
+        Callback = function()
+            game.Players.LocalPlayer.PlayerGui[machine[2]].Enabled = true
+            Core:Notify(Rayfield, machine[1], machine[1] .. " is now opening.")
+        end
+    })
+end
+
+-- Misc Tab: Player Tweaks
+miscTab:CreateSection("Player Tweaks")
+local tweaks = {
+    { "Speed Power", 16, 100, 1, "Speed", "SpeedSlider", function(value) Core:UpdatePlayerStat("WalkSpeed", value) end },
+    { "Jump Power", 50, 300, 10, "Power", "JumpSlider", function(value) Core:UpdatePlayerStat("JumpPower", value) end }
+}
+
+for _, tweak in ipairs(tweaks) do
+    miscTab:CreateSlider({
+        Name = tweak[1],
+        Range = { tweak[2], tweak[3] },
+        Increment = tweak[4],
+        Suffix = tweak[5],
+        CurrentValue = tweak[2],
+        Flag = tweak[6],
+        Callback = tweak[7]
+    })
+end
+
+-- Misc Tab: Anti Staff Detection
+miscTab:CreateSection("Anti Staff")
+miscTab:CreateDropdown({
+    Name = "Staff Warning/Leave",
+    Options = { "Warning", "Leave" },
+    CurrentOption = "Warning",
+    Flag = "StaffWarningDropdown",
+    Callback = function(option)
+        game.Players.PlayerAdded:Connect(function(player)
+            local groupId, staffRoles = 16121824, { "Owner 🛠", "Co-Owner ✓", "Head Admin ✔️" }
+            if player:GetRankInGroup(groupId) > 0 and table.find(staffRoles, player:GetRoleInGroup(groupId)) then
+                if option == "Leave" then
+                    game.Players.LocalPlayer:Kick("Staff detected, leaving the server.")
+                else
+                    Core:Notify(Rayfield, "Staff Member Joined!", "Staff detected: " .. player.Name)
+                end
+            end
+        end)
+    end
+})
+
+-- Community Tab: Join Discord
+communityTab:CreateSection("Join Us")
+communityTab:CreateParagraph({
+    Title = "Join the Univers Hub Community!",
+    Content = "Click below to copy our Discord link."
+})
+communityTab:CreateButton({
+    Name = "Copy Discord Link",
+    Callback = function()
+        setclipboard("https://discord.gg/PwbtqEDT")
+        Core:Notify(Rayfield, "Link Copied!", "Discord link copied to clipboard.")
+    end
+})
+
+-- Notifications
+Core:Notify(Rayfield, "Script Loaded", "Welcome to Univers Hub for Bee Master Simulator!")
