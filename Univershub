@@ -1,6 +1,6 @@
 local idgame = game.PlaceId
 
-if idgame == 100902716985467 then
+if idgame == 93814145359936 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/lumecraftor/Scriptupdates/refs/heads/main/BeeMasterSimulator"))()
 elseif idgame == 116432016116625 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/lumecraftor/Scriptupdates/refs/heads/main/FishTraining"))()
