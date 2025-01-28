@@ -1,7 +1,19 @@
 local idgame = game.PlaceId
+local scripts = {
+    [93814145359936] = "https://raw.githubusercontent.com/lumecraftor/Scriptupdates/refs/heads/main/BeeMasterSimulator",
+    [116432016116625] = "https://raw.githubusercontent.com/lumecraftor/Scriptupdates/refs/heads/main/FishTraining"
+}
 
-if idgame == 93814145359936 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/lumecraftor/Scriptupdates/refs/heads/main/BeeMasterSimulator"))()
-elseif idgame == 116432016116625 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/lumecraftor/Scriptupdates/refs/heads/main/FishTraining"))()
+if scripts[idgame] then
+    local success, response = pcall(function()
+        return game:HttpGet(scripts[idgame])
+    end)
+    
+    if success then
+        loadstring(response)()
+    else
+        warn("Failed to load script for game ID: " .. idgame)
+    end
+else
+    warn("No script found for this game.")
 end
