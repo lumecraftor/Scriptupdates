@@ -142,7 +142,7 @@ if game.PlaceId == 93814145359936 then
         Flag = "StaffWarningDropdown",
         Callback = function(option)
             game.Players.PlayerAdded:Connect(function(player)
-                local groupId, staffGroupId = 16121824, 7
+                local groupId, staffGroupId = 35554847, 7
                 if player:GetRankInGroup(groupId) > 0 then
                     if option == "Leave" then
                         game.Players.LocalPlayer:Kick("Staff detected. Leaving server.")
