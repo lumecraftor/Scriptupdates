@@ -18,6 +18,7 @@ if game.PlaceId == 93814145359936 then
     })
 
     -- ===================== TABS ===================== --
+    -- Home Tab
     local homeTab = Window:CreateTab("🏠 Home", nil)
     homeTab:CreateSection("Welcome to Univers Hub!")
     homeTab:CreateParagraph({
@@ -25,13 +26,11 @@ if game.PlaceId == 93814145359936 then
         Content = "Univers Hub enhances your Bee Master Simulator experience with powerful and easy-to-use features."
     })
 
+    -- Main Tab
     local mainTab = Window:CreateTab("🌟 Main", nil)
-    local miscTab = Window:CreateTab("🖇️ Miscellaneous", nil)
-    local communityTab = Window:CreateTab("🎉 Community", nil)
-
-    -- ===================== MAIN TAB ===================== --
-    -- Farm Features Section
     mainTab:CreateSection("Farm Features")
+
+    -- Egg Selection & Auto Hatch
     local Eggs = { ["Spawn Hive Egg"] = "631f4d8de6bb46b7b8ec92a9738fd4b02" }
     local selectedEgg, isAutoHatching = nil, false
 
@@ -64,7 +63,7 @@ if game.PlaceId == 93814145359936 then
     })
 
     -- Machine Controls Section
-    mainTab:CreateSection("Machines")
+    mainTab:CreateSection("Machine Controls")
     local machines = {
         { "Open Golden Machine", "Shiny" },
         { "Open Rainbow Machine", "Rainbow" },
@@ -100,7 +99,9 @@ if game.PlaceId == 93814145359936 then
     end
 
     -- ===================== MISC TAB ===================== --
+    local miscTab = Window:CreateTab("🖇️ Miscellaneous", nil)
     miscTab:CreateSection("Player Tweaks")
+
     -- Speed and Jump Sliders
     miscTab:CreateSlider({
         Name = "Speed Power",
@@ -154,6 +155,7 @@ if game.PlaceId == 93814145359936 then
     })
 
     -- ===================== COMMUNITY TAB ===================== --
+    local communityTab = Window:CreateTab("🎉 Community", nil)
     communityTab:CreateSection("Join Us")
     communityTab:CreateParagraph({
         Title = "Join the Univers Hub Community!",
@@ -167,7 +169,39 @@ if game.PlaceId == 93814145359936 then
         end
     })
 
-    -- Notify User on Script Load
+    -- ===================== SETTINGS TAB ===================== --
+    local settingsTab = Window:CreateTab("⚙️ Settings", nil)
+    settingsTab:CreateSection("Configuration Settings")
+
+    -- Toggle Configuration Saving
+    settingsTab:CreateToggle({
+        Name = "Enable Configuration Saving",
+        CurrentValue = true,
+        Flag = "ConfigSaving",
+        Callback = function(state)
+            Rayfield:Notify({ Title = "Configuration", Content = "Config Saving: " .. tostring(state), Duration = 3 })
+        end
+    })
+
+    -- Save Settings Button
+    settingsTab:CreateButton({
+        Name = "Save Settings",
+        Callback = function()
+            Rayfield:SaveConfiguration()
+            Rayfield:Notify({ Title = "Success", Content = "Settings Saved!", Duration = 3 })
+        end
+    })
+
+    -- Load Configurations
+    local success, err = pcall(function()
+        Rayfield:LoadConfiguration()
+    end)
+
+    if not success then
+        warn("⚠️ Failed to load configuration: " .. err)
+    end
+
+    -- ===================== SCRIPT NOTIFICATIONS ===================== --
     Rayfield:Notify({
         Title = "Script Loaded",
         Content = "Welcome to 🌌 Univers Hub 🌌 for Bee Master Simulator! 🐝",
@@ -175,5 +209,5 @@ if game.PlaceId == 93814145359936 then
     })
 
 else
-    warn("This script is not compatible with the current game.")
+    warn("❌ This script is not compatible with the current game.")
 end
