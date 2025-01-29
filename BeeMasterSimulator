@@ -204,7 +204,7 @@ if game.PlaceId == 93814145359936 then
     -- ===================== SCRIPT NOTIFICATIONS ===================== --
     Rayfield:Notify({
         Title = "Script Loaded",
-        Content = "Welcome to 🌌 Univers Hub 🌌 for Bee Master Simulator! 🐝",
+        Content = "Welcome to 🌌 Univers Hub 🌌 for Bee king Simulator! 👑",
         Duration = 5
     })
 
