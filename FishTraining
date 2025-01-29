@@ -152,6 +152,38 @@ if game.PlaceId == 116432016116625 then
         end
     })
 
+    -- ===================== SETTINGS TAB ===================== --
+    local settingsTab = Window:CreateTab("⚙️ Settings", nil)
+    settingsTab:CreateSection("Configuration Settings")
+
+    -- Toggle Configuration Saving
+    settingsTab:CreateToggle({
+        Name = "Enable Configuration Saving",
+        CurrentValue = true,
+        Flag = "ConfigSaving",
+        Callback = function(state)
+            Rayfield:Notify({ Title = "Configuration", Content = "Config Saving: " .. tostring(state), Duration = 3 })
+        end
+    })
+
+    -- Save Settings Button
+    settingsTab:CreateButton({
+        Name = "Save Settings",
+        Callback = function()
+            Rayfield:SaveConfiguration()
+            Rayfield:Notify({ Title = "Success", Content = "Settings Saved!", Duration = 3 })
+        end
+    })
+
+    -- Load Configurations
+    local success, err = pcall(function()
+        Rayfield:LoadConfiguration()
+    end)
+
+    if not success then
+        warn("⚠️ Failed to load configuration: " .. err)
+    end
+
     -- ===================== FINAL NOTIFICATION ===================== --
     Rayfield:Notify({
         Title = "Script Loaded",
