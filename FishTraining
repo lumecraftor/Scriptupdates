@@ -18,7 +18,7 @@ if game.PlaceId == 116432016116625 then
     })
 
     -- ===================== TABS ===================== --
-    local homeTab = Window:CreateTab("🏠 Home")
+    local homeTab = Window:CreateTab("Home", "🏠")
     homeTab:CreateSection("Welcome to Univers Hub!")
     homeTab:CreateParagraph({
         Title = "🌟 About",
