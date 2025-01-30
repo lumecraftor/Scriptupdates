@@ -1,17 +1,17 @@
 -- Ensure the script only runs in Fish Training
 if game.PlaceId == 116432016116625 then
     -- UNIVERS Hub for Fish Training
-    local CurrentVersion = "🌟 UNIVERS Hub 🌊 | Fish Training 🎣"
+    local CurrentVersion = "🌟 • UNIVERS Hub v1 🌌 | Fish Training 🎣"
     local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
     -- Create Main Window
     local Window = Rayfield:CreateWindow({
         Name = CurrentVersion,
-        LoadingTitle = "🌊 Loading Univers Hub... 🌊",
+        LoadingTitle = "🌌 Loading Univers Hub v1... 🌌",
         LoadingSubtitle = "By 🌟 Univers Team 🌌",
         ConfigurationSaving = {
             Enabled = true,
-            FolderName = "UniversHubConfigs",
+            FolderName = "FishTraningConfigs",
             FileName = "FishTraining"
         },
         Discord = { Enabled = true, Invite = "PwbtqEDT", RememberJoins = true }
@@ -25,9 +25,9 @@ if game.PlaceId == 116432016116625 then
         Content = "Univers Hub enhances your Fish Training experience with powerful and easy-to-use features."
     })
 
-    local mainTab = Window:CreateTab("🎣 Main Features")
-    local miscTab = Window:CreateTab("⚙️ Miscellaneous")
-    local communityTab = Window:CreateTab("🌐 Community")
+    local mainTab = Window:CreateTab("Main Features", "🎣")
+    local miscTab = Window:CreateTab("Miscellaneous", "⚙️")
+    local communityTab = Window:CreateTab("Community", "🌐")
 
     -- ===================== MAIN FEATURES ===================== --
     mainTab:CreateSection("Automated Features")
@@ -153,7 +153,7 @@ if game.PlaceId == 116432016116625 then
     })
 
     -- ===================== SETTINGS TAB ===================== --
-    local settingsTab = Window:CreateTab("⚙️ Settings", nil)
+    local settingsTab = Window:CreateTab("Settings", "⚙️")
     settingsTab:CreateSection("Configuration Settings")
 
     -- Toggle Configuration Saving
