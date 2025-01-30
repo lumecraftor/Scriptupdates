@@ -1,17 +1,17 @@
 -- Ensure the script only runs in Bee Master Simulator
 if game.PlaceId == 93814145359936 then
     -- Script version and setup
-    local CurrentVersion = "🌟 • UNIVERS Hub 🌌 | Bee Master Simulator 🐝"
+    local CurrentVersion = "🌟 • UNIVERS Hub v1 🌌 | Bee king Simulator 👑"
     local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
     -- Create Main Window
     local Window = Rayfield:CreateWindow({
         Name = CurrentVersion,
         LoadingTitle = "🌌 Loading Univers Hub... 🌌",
-        LoadingSubtitle = "By Univers Team",
+        LoadingSubtitle = "By Univers Team 🌌",
         ConfigurationSaving = {
             Enabled = true,
-            FolderName = "UniversHubConfigs",
+            FolderName = "BeeKingSimulatorConfigs",
             FileName = "BeeMasterSimulator"
         },
         Discord = { Enabled = true, Invite = "PwbtqEDT", RememberJoins = true }
@@ -19,7 +19,7 @@ if game.PlaceId == 93814145359936 then
 
     -- ===================== TABS ===================== --
     -- Home Tab
-    local homeTab = Window:CreateTab("🏠 Home", nil)
+    local homeTab = Window:CreateTab("Home", "🏠")
     homeTab:CreateSection("Welcome to Univers Hub!")
     homeTab:CreateParagraph({
         Title = "🌟 About",
@@ -99,7 +99,7 @@ if game.PlaceId == 93814145359936 then
     end
 
     -- ===================== MISC TAB ===================== --
-    local miscTab = Window:CreateTab("🖇️ Miscellaneous", nil)
+    local miscTab = Window:CreateTab("Miscellaneous", "🖇️")
     miscTab:CreateSection("Player Tweaks")
 
     -- Speed and Jump Sliders
@@ -155,7 +155,7 @@ if game.PlaceId == 93814145359936 then
     })
 
     -- ===================== COMMUNITY TAB ===================== --
-    local communityTab = Window:CreateTab("🎉 Community", nil)
+    local communityTab = Window:CreateTab("Community", "🎉")
     communityTab:CreateSection("Join Us")
     communityTab:CreateParagraph({
         Title = "Join the Univers Hub Community!",
@@ -170,7 +170,7 @@ if game.PlaceId == 93814145359936 then
     })
 
     -- ===================== SETTINGS TAB ===================== --
-    local settingsTab = Window:CreateTab("⚙️ Settings", nil)
+    local settingsTab = Window:CreateTab("Settings", "⚙️")
     settingsTab:CreateSection("Configuration Settings")
 
     -- Toggle Configuration Saving
