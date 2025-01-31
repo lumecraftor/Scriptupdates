@@ -183,15 +183,6 @@ if game.PlaceId == 93814145359936 then
         end
     })
 
-    -- Save Settings Button
-    settingsTab:CreateButton({
-        Name = "Save Settings",
-        Callback = function()
-            Rayfield:SaveConfiguration()
-            Rayfield:Notify({ Title = "Success", Content = "Settings Saved!", Duration = 3 })
-        end
-    })
-
     -- Load Configurations
     local success, err = pcall(function()
         Rayfield:LoadConfiguration()
